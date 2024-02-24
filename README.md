@@ -1,5 +1,6 @@
 # SmackerTracker-IronmonExtension
 An Ironmon Tracker extension: Track your seed data!
+Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 
 ## Shoutouts
 - madthehead - Created the html, js, and css for the dashboard
