@@ -1,6 +1,10 @@
 # SmackerTracker-IronmonExtension
 An Ironmon Tracker extension: Track your seed data!
 
+## Shoutouts
+- madthehead - Created the html, js, and css for the dashboard
+- utdzac - For continuing to update the tracker and make all this possible
+
 ## Requirements
 - [Ironmon-Tracker v8.4.1](https://github.com/besteon/Ironmon-Tracker) or higher
 
