@@ -17,10 +17,10 @@ An Ironmon Tracker extension: Track your seed data!
 7) Click on the "**[BETA]SmackerTracker**" extension button to view the extension and turn it on
 
 ## How to use
-Simply turn the extension on when you are playing IronMon.
-Whenever your pokemon's HP goes to zero it will save data about your run into a csv file named "**ironmon-seed-data.csv**".
-The data of your seeds and the dashboard will be saved in "**extensions/SmackerTracker**".
-To update the dashboard: (Click the 'options' button in the extension menu)
+Simply turn the extension on when you are playing IronMon. <br>
+Whenever your pokemon's HP goes to zero it will save data about your run into a csv file named "**ironmon-seed-data.csv**". <br>
+The data of your seeds and the dashboard will be saved in "**extensions/SmackerTracker**". <br><br>
+**To update the dashboard:** (Click the 'options' button in the extension menu)
 - Tracker Settings > Extensions > Smacker Tracker > Options
 
 ![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/4128472a-fb7f-4d52-903b-6bcd32205930)
@@ -36,5 +36,3 @@ Sections)
 4) Detailed Data - Shows a detailed view of all your IronMon runs since you started using this extension.
 
 ![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/83b0f963-fed5-4117-b597-af6afcdfa15e)
-
-6)
