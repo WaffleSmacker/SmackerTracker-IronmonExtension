@@ -28,8 +28,6 @@ The data of your seeds and the dashboard will be saved in "**extensions/SmackerT
 
 ## Dashboard
 The dashboard contains multiple data points of your runs.
-
-Sections)
 1) Aggregated Stats - See an aggregated summary of all of your runs.
 2) Filters - Select these to adjust which data you want to see.
 3) Recent Summary Run - Shows the most recent run OR displays info of a mon you select in section 4.
