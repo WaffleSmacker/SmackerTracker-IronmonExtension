@@ -27,7 +27,7 @@ Whenever your pokemon's HP goes to zero it will save data about your run into a 
 The data of your seeds and the dashboard will be saved in "**extensions/SmackerTracker**". <br><br>
 
 ![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/6ca36cf2-7a50-4e97-bc49-6b5fec2bfcfd)
-<br><br>
+<br>
 
 ### To Open the Dashboard
 When you get the Game Over screen, click the NotePad Icon.
