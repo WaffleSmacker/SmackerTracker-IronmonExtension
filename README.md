@@ -7,7 +7,7 @@ Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 - utdzac - For continuing to update the tracker and make all this possible
 
 ## Important Notes
-**THERE HAVE BEEN INSTANCES OF THE DASHBOARD PAGE CRASHING WHEN STREAMING WITH OBS. PLEASE USE OTHER BROWSERS.**
+**THERE HAVE BEEN INSTANCES OF OBS CRASHING WHEN VIEWING THE DASHBOARD WITH MOZILLA FIREFOX. PLEASE USE OTHER CHROMIUM BASED BROWSERS.**
 
 ## Requirements
 - [Ironmon-Tracker v8.4.1](https://github.com/besteon/Ironmon-Tracker) or higher
