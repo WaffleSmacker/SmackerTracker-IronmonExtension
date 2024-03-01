@@ -6,9 +6,11 @@ Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 - madthehead - Created the html, js, and css for the dashboard
 - utdzac - For continuing to update the tracker and make all this possible
 
+## Important Notes
+**THERE HAVE BEEN INSTANCES OF THE DASHBOARD PAGE CRASHING WHEN STREAMING WITH OBS. PLEASE USE OTHER BROWSERS.**
+
 ## Requirements
 - [Ironmon-Tracker v8.4.1](https://github.com/besteon/Ironmon-Tracker) or higher
-- **NOTE** THERE HAVE BEEN INSTANCES OF THE DASHBOARD PAGE CRASHING WHEN STREAMING WITH OBS. PLEASE USE OTHER BROWSERS
 
 ## Download & Install
 1) Download the [latest release](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/releases/latest) of this extension from the GitHub's Releases page
