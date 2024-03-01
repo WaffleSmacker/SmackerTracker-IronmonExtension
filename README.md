@@ -33,10 +33,15 @@ The data of your seeds and the dashboard will be saved in "**extensions/SmackerT
 <br>
 
 ### To Open the Dashboard
+Method 1:
 When you get the Game Over screen, click the NotePad Icon.
 After you open the dash, you only need to refresh the page to update to the most recent data.
 
 ![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/e9d3322a-91ca-4305-9f1d-d5877d1889a5)
+
+Method 2:
+Open the Ironmon Tracker -> Extensions Folder -> SmackerTracker Folder -> Open dashboard.html
+![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/13566b59-1b53-4832-b91b-fca328b21994)
 
 
 ## Dashboard
@@ -46,4 +51,5 @@ The dashboard contains multiple data points of your runs.
 3) Recent Summary Run - Shows the most recent run OR displays info of a mon you select in section 4.
 4) Detailed Data - Shows a detailed view of all your IronMon runs since you started using this extension.
 
-![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/83b0f963-fed5-4117-b597-af6afcdfa15e)
+![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/96d7a840-4b13-45b7-abd2-b5f5b18a2ec0)
+
