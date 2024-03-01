@@ -8,6 +8,7 @@ Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 
 ## Important Notes
 **THERE HAVE BEEN INSTANCES OF OBS CRASHING WHEN VIEWING THE DASHBOARD WITH MOZILLA FIREFOX. PLEASE USE OTHER CHROMIUM BASED BROWSERS.**
+- We have multiple updates planned, if you are interested please reach out to [WaffleSmacker's discord](https://discord.gg/dQhFAJE2X5) and put ideas in the "Suggestions" section.
 
 ## Requirements
 - [Ironmon-Tracker v8.4.1](https://github.com/besteon/Ironmon-Tracker) or higher
