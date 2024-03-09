@@ -1,5 +1,5 @@
 # SmackerTracker-IronmonExtension
-An Ironmon Tracker extension: Track your seed data! <br>
+An Ironmon Tracker extension: Track your FireRed seed data! <br>
 Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 
 ## Shoutouts
