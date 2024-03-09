@@ -30,7 +30,8 @@ Simply turn the extension on when you are playing IronMon. <br>
 Whenever your pokemon's HP goes to zero it will save data about your run into a csv file named "**ironmon-seed-data.csv**". <br>
 The data of your seeds and the dashboard will be saved in "**extensions/SmackerTracker**". <br><br>
 
-![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/6ca36cf2-7a50-4e97-bc49-6b5fec2bfcfd)
+![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/404d2de0-c382-4247-bdd3-28d0e2b60ed6)
+
 <br>
 
 ### To Open the Dashboard
