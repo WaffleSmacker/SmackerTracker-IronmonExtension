@@ -23,7 +23,7 @@ Created by [WaffleSmacker](https://www.twitch.tv/wafflesmacker)
 5) In the Extensions menu, enable "**Allow custom code to run**" (if it is currently disabled)
 6) Click the "**Install New**" button at the bottom to check for newly installed extensions
    - If you don't see anything in the extensions list, double-check the extension files are installed in the right location. Refer to the [Tracker wiki documentation](https://github.com/besteon/Ironmon-Tracker/wiki/Tracker-Add-ons#install-and-setup-1) if you need additional help
-7) Click on the "**[BETA]SmackerTracker**" extension button to view the extension and turn it on
+7) Click on the "**SmackerTracker V1.0**" extension button to view the extension and turn it on
 
 ## How to use
 Simply turn the extension on when you are playing IronMon. <br>
