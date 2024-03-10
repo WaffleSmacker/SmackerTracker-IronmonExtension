@@ -49,9 +49,10 @@ Open the Ironmon Tracker -> Extensions Folder -> SmackerTracker Folder -> Open d
 ## Dashboard
 The dashboard contains multiple data points of your runs.
 1) Aggregated Stats - See an aggregated summary of all of your runs.
-2) Filters - Select these to adjust which data you want to see.
-3) Recent Summary Run - Shows the most recent run OR displays info of a mon you select in section 4.
-4) Detailed Data - Shows a detailed view of all your IronMon runs since you started using this extension.
+2) Recent Summary Run - Shows the most recent run OR displays info of a mon you select in section 3.
+3) Detailed Data - Shows a detailed view of all your IronMon runs since you started using this extension.
+4) Filters - Select these to adjust which data you want to see.
+   
+![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/b54da66a-5978-4613-8a85-e6631e74f239)
 
-![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/96d7a840-4b13-45b7-abd2-b5f5b18a2ec0)
 
