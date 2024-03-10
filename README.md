@@ -43,7 +43,8 @@ After you open the dash, you only need to refresh the page to update to the most
 
 Method 2:
 Open the Ironmon Tracker -> Extensions Folder -> SmackerTracker Folder -> Open dashboard.html
-![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/13566b59-1b53-4832-b91b-fca328b21994)
+![image](https://github.com/WaffleSmacker/SmackerTracker-IronmonExtension/assets/131427794/51a48989-2548-4358-add9-09024d53c828)
+
 
 
 ## Dashboard
