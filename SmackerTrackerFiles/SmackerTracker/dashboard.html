@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IronMon Smacker Tracker</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" sizes="48x48" type="image/webp"
+          href="data:image/webp;base64,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">
+    <script src="./data.js"></script>
+    <link rel="stylesheet" href="dist/css/styles.min.css"/>
+    <script src="dist/js/script.min.js"></script>
+</head>
+<body data-bs-theme="dark">
+<div class="page-body container-fluid">
+    <div class="row gx-2">
+        <div class="col mt-2">
+            <div class="dash-title flex-grow-1 card">
+                <div class="card-body d-flex flex-row justify-content-between align-items-center">
+                    <h1 clasS="h2 mb-0">
+                        IronMon Smacker Tracker
+                        <a href="#settingsModal" data-bs-toggle="modal" class="text-decoration-none">
+                            ⚙️
+                        </a>
+                    </h1>
+                    <a href="https://twitch.tv/wafflesmacker" target="_blank">Created by Wafflesmacker</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row gx-2">
+        <div class="col-auto mt-2">
+            <div class="aggregated-metrics card flex-grow" id="metrics">
+                <div class="card-body">
+                    <h4 class="card-title">Summary Data</h4>
+                    <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
+                        <span class="label">Total Seeds:</span> <span id="totalSeeds"></span>
+                        <span class="label">Lab Escape Rate:</span>
+                        <div><span id="labEscapeRate"></span>%</div>
+                        <span class="label">Runs Past Brock:</span> <span id="runsPastBrock"></span>
+                        <span class="label">Brock Escape Rate:</span>
+                        <div><span id="brockEscapeRate"></span>%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 5 Pokemon</h4>
+                    <div id="top5Pokemon" class="d-inline-grid column-gap-2"
+                         style="grid-template-columns: repeat(2, auto);"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-auto mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Top 5 Types</h4>
+                    <div id="top5Types" class="d-inline-grid column-gap-2"
+                         style="grid-template-columns: repeat(2, auto);"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col mt-2">
+            <div class="card selected-seed-info">
+                <div class="card-body d-flex flex-row gap-3">
+                    <div>
+                        <h4 class="card-title">Seed #<span id="recentSeedNumber"></span></h4>
+                        <div class="d-flex flex-row gap-3">
+                            <div class="seed-image">
+                                <img id="recentImage" class="img-fluid"
+                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                     alt="Pokemon Image"/>
+                            </div>
+                            <div>
+                                <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
+                                    <span class="label">PokeMon:</span> <span id="recentName"></span>
+                                    <span class="label">Level:</span> <span id="recentLVL"></span>
+                                    <span class="label">BST:</span> <span id="recentBST"></span>
+                                    <span class="label">Run Ended:</span> <span id="recentRunEnded"></span>
+                                    <span class="label">End Cause:</span> <span id="recentRunEndCause"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-chart">
+                        <h4 class="card-title text-center">Stats</h4>
+                        <div class="seed-info-stats" style="height: 120px; width: 250px;">
+                            <canvas id="statsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="seed-info-moves">
+                        <h4 class="card-title">Moves</h4>
+                        <div id='recentMove1'>Psychic</div>
+                        <div id='recentMove2'>Magical Leaf</div>
+                        <div id='recentMove3'>Thief</div>
+                        <div id='recentMove4'>Rock Throw</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="aggregate-data card my-2">
+        <div class="table-responsive">
+            <table class="table mb-0 seed-detailed-table">
+                <thead class="sticky-top">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Playtime</th>
+                    <th>Pokemon</th>
+                    <th>Pivot</th>
+                    <th>LVL</th>
+                    <th>HP</th>
+                    <th>ATK</th>
+                    <th>DEF</th>
+                    <th>SPA</th>
+                    <th>SPD</th>
+                    <th>SPE</th>
+                    <th>Ability</th>
+                    <th><img title="Shedinjas encountered" alt="shed"
+                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATBAMAAABiojCGAAAAElBMVEUAAABBQUHV1Wq9pFpiYlr29qxtbM5HAAAAAXRSTlMAQObYZgAAAH9JREFUCNc9zdENwyAMRdGHlAFwyAJ5ZAHHHqAJLFCp3X+VAiq5X0e2JQMQzALjw/MhkuJ/Ft4iTYyNNEpgjlhS5v5Z8xVxryd5JOeOwkZTM8WVSTF1iQht9S1qCmBjvQ+V2Gmne/Lx2JxiFT0RydUHF60sL4zqdk9iKRWY7sMfeFARcwYTa1kAAAAASUVORK5CYII=">
+                    </th>
+                    <th>End Location</th>
+                    <th>End Cause</th>
+                    <th>Enemy Pokemon</th>
+                    <th>Last Move</th>
+                </tr>
+                </thead>
+                <tbody id="data-table-body"></tbody>
+            </table>
+
+        </div>
+        <div class="page-controls p-2">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
+                        Filter
+                    </button>
+                </div>
+                <div class="col-auto d-flex flex-row flex-shrink-1 align-items-center gap-2">
+                    Page <input class="form-control d-inline-block" type="number" min="1" max="1" name="page" value="1">
+                    / <span id="maxPages">1</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Windows -->
+<div class="modal fade" id="settingsModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Settings</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="settingsForm">
+                    <div class="mb-3">
+                        <label class="form-label">Theme:</label>
+                        <select class="form-select" name="theme">
+                            <option value="auto" selected>Auto</option>
+                            <option value="dark">Dark</option>
+                            <option value="light">Light</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Warning message:</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="hideWarningMessage" value="1" id="hideWarningMessage">
+                            <label class="form-check-label" for="hideWarningMessage">
+                                Hide Firefox warning message
+                            </label>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pageBodyPaddingRight" class="form-label">Page body padding right:</label>
+                        <input type="number" min="0" max="540" class="form-control" id="pageBodyPaddingRight" name="pageBodyPaddingRight" placeholder="Padding in px. (Max: 540)">
+                    </div>
+                </form>
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary" id="saveSettings">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="filterModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Filter</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="filter">
+                <form id="filterForm">
+                    <div class="mb-3">
+                        <h4>Pokemon:</h4>
+                        <select class="form-select" id="pokemon_select" name="pokemon[]" multiple data-ub-select-search
+                                data-ub-select-clear></select>
+                    </div>
+                    <div class="mb-3">
+                        <select id="bstFilter" name="bst" class="form-select">
+                            <option value="" selected>Select BST Range</option>
+                            <option value="under300">Under 300</option>
+                            <option value="300to449">300 - 449</option>
+                            <option value="450to599">450 - 599</option>
+                            <option value="over600">Over 600</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <h4>Last enemy move:</h4>
+                        <select class="form-select" id="enemy_move_select" name="lastEnemyMove[]" multiple
+                                data-ub-select-search data-ub-select-clear></select>
+                    </div>
+                </form>
+                <div class="text-end">
+                    <button type="button" class="btn btn-primary" id="applyFilter">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
