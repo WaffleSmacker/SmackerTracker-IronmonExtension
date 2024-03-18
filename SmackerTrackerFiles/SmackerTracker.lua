@@ -397,8 +397,12 @@ local function IronMonData()
 		for line in file:lines() do
 			local fields = split(line, ",")
 			local jsonLine = "{"
+			local value = "null";
 			for i, header in ipairs(headers) do
-				jsonLine = jsonLine .. '"' .. header .. '":"' .. fields[i] .. '"'
+				if fields[i] ~= nil then
+					value = fields[i];
+				end
+				jsonLine = jsonLine .. '"' .. header .. '":"' .. value .. '"'
 				if i < #headers then
 					jsonLine = jsonLine .. ","
 				end
