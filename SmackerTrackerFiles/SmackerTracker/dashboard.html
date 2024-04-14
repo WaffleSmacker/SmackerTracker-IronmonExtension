@@ -12,136 +12,199 @@
 </head>
 <body data-bs-theme="dark">
 <div class="page-body container-fluid">
-    <div class="row gx-2">
-        <div class="col mt-2">
-            <div class="dash-title flex-grow-1 card">
-                <div class="card-body d-flex flex-row justify-content-between align-items-center">
-                    <h1 clasS="h2 mb-0">
-                        IronMon Smacker Tracker
-                        <a href="#settingsModal" data-bs-toggle="modal" class="text-decoration-none">
-                            ⚙️
-                        </a>
-                    </h1>
-                    <a href="https://twitch.tv/wafflesmacker" target="_blank">Created by Wafflesmacker</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row gx-2">
-        <div class="col-auto mt-2">
-            <div class="aggregated-metrics card flex-grow" id="metrics">
-                <div class="card-body">
-                    <h4 class="card-title">Summary Data</h4>
-                    <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
-                        <span class="label">Total Seeds:</span> <span id="totalSeeds"></span>
-                        <span class="label">Lab Escape Rate:</span>
-                        <div><span id="labEscapeRate"></span>%</div>
-                        <span class="label">Runs Past Brock:</span> <span id="runsPastBrock"></span>
-                        <span class="label">Brock Escape Rate:</span>
-                        <div><span id="brockEscapeRate"></span>%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-auto mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Top 5 Pokemon</h4>
-                    <div id="top5Pokemon" class="d-inline-grid column-gap-2"
-                         style="grid-template-columns: repeat(2, auto);"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-auto mt-2">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Top 5 Types</h4>
-                    <div id="top5Types" class="d-inline-grid column-gap-2"
-                         style="grid-template-columns: repeat(2, auto);"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col mt-2">
-            <div class="card selected-seed-info">
-                <div class="card-body d-flex flex-row gap-3">
-                    <div>
-                        <h4 class="card-title">Seed #<span id="recentSeedNumber"></span></h4>
-                        <div class="d-flex flex-row gap-3">
-                            <div class="seed-image">
-                                <img id="recentImage" class="img-fluid"
-                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                     alt="Pokemon Image"/>
-                            </div>
-                            <div>
-                                <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
-                                    <span class="label">PokeMon:</span> <span id="recentName"></span>
-                                    <span class="label">Level:</span> <span id="recentLVL"></span>
-                                    <span class="label">BST:</span> <span id="recentBST"></span>
-                                    <span class="label">Run Ended:</span> <span id="recentRunEnded"></span>
-                                    <span class="label">End Cause:</span> <span id="recentRunEndCause"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="stats-chart">
-                        <h4 class="card-title text-center">Stats</h4>
-                        <div class="seed-info-stats" style="height: 120px; width: 250px;">
-                            <canvas id="statsChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="seed-info-moves">
-                        <h4 class="card-title">Moves</h4>
-                        <div id='recentMove1'>Psychic</div>
-                        <div id='recentMove2'>Magical Leaf</div>
-                        <div id='recentMove3'>Thief</div>
-                        <div id='recentMove4'>Rock Throw</div>
-                    </div>
-                </div>
-            </div>
+
+    <div class="dash-title h-auto card mt-2">
+        <div class="card-body d-flex flex-row justify-content-between align-items-center">
+            <h1 clasS="h2 mb-0">
+                IronMon Smacker Tracker
+                <a href="#settingsModal" data-bs-toggle="modal" class="text-decoration-none">
+                    ⚙️
+                </a>
+            </h1>
+            <a href="https://twitch.tv/wafflesmacker" target="_blank">Created by Wafflesmacker</a>
         </div>
     </div>
 
-    <div class="aggregate-data card my-2">
-        <div class="table-responsive">
-            <table class="table mb-0 seed-detailed-table">
-                <thead class="sticky-top">
-                <tr>
-                    <th>#</th>
-                    <th>Date</th>
-                    <th>Playtime</th>
-                    <th>Pokemon</th>
-                    <th>Pivot</th>
-                    <th>LVL</th>
-                    <th>HP</th>
-                    <th>ATK</th>
-                    <th>DEF</th>
-                    <th>SPA</th>
-                    <th>SPD</th>
-                    <th>SPE</th>
-                    <th>Ability</th>
-                    <th><img title="Shedinjas encountered" alt="shed"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATBAMAAABiojCGAAAAElBMVEUAAABBQUHV1Wq9pFpiYlr29qxtbM5HAAAAAXRSTlMAQObYZgAAAH9JREFUCNc9zdENwyAMRdGHlAFwyAJ5ZAHHHqAJLFCp3X+VAiq5X0e2JQMQzALjw/MhkuJ/Ft4iTYyNNEpgjlhS5v5Z8xVxryd5JOeOwkZTM8WVSTF1iQht9S1qCmBjvQ+V2Gmne/Lx2JxiFT0RydUHF60sL4zqdk9iKRWY7sMfeFARcwYTa1kAAAAASUVORK5CYII=">
-                    </th>
-                    <th>End Location</th>
-                    <th>End Cause</th>
-                    <th>Enemy Pokemon</th>
-                    <th>Last Move</th>
-                </tr>
-                </thead>
-                <tbody id="data-table-body"></tbody>
-            </table>
+    <ul class="nav nav-pills mt-2">
+        <li class="nav-item">
+            <button type="button" class="nav-link" data-bs-toggle="modal" data-bs-target="#filterModal" style="color: var(--bs-nav-pills-link-active-color); background-color: var(--bs-secondary);">
+                &#x1F50D; Search (Results: <span class="result-count">0</span>)
+            </button>
+        </li>
+        <li class="nav-item ms-2">
+            <button class="nav-link active" id="charts-tab" data-bs-toggle="tab" data-bs-target="#charts-tab-pane" type="button" role="tab"
+                    aria-controls="charts-tab-pane" aria-selected="true">
+                Charts
+            </button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-link" id="list-tab" data-bs-toggle="tab" data-bs-target="#list-tab-pane" type="button" role="tab"
+                    aria-controls="list-tab-pane">
+                List
+            </button>
+        </li>
+    </ul>
 
-        </div>
-        <div class="page-controls p-2">
-            <div class="d-flex justify-content-between">
-                <div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
-                        Filter
-                    </button>
+    <div class="tab-content mb-2">
+        <div class="tab-pane fade show active" id="charts-tab-pane" role="tabpanel" aria-labelledby="charts-tab" tabindex="0">
+            <div class="row gx-2">
+                <div class="col-4 col-xl mt-2">
+                    <div class="aggregated-metrics card flex-grow" id="metrics">
+                        <div class="card-body">
+                            <h4 class="card-title">Summary Data</h4>
+                            <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
+                                <span class="label">Total Seeds:</span> <span id="totalSeeds"></span>
+                                <span class="label">Lab Escapes:</span> <span id="labEscapeCount"></span>
+                                <span class="label">Lab Escape Rate:</span>
+                                <div><span id="labEscapeRate"></span>%</div>
+                                <span class="label">Runs Past Brock:</span> <span id="runsPastBrock"></span>
+                                <span class="label">Brock Escape Rate:</span>
+                                <div><span id="brockEscapeRate"></span>%</div>
+                                <span class="label">Wins:</span> <span id="winCount"></span>
+                                <span class="label" style="white-space: normal;">
+                                    Trolls:<br>
+                                </span> <span id="trollCount"></span>
+
+                            </div>
+                            <div class="form-text ws-normal">
+                                (1 Hit KO's, D-bond, P-song, Explosion, Mirror Coat, Self-Destruct, Counter)
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-auto d-flex flex-row flex-shrink-1 align-items-center gap-2">
-                    Page <input class="form-control d-inline-block" type="number" min="1" max="1" name="page" value="1">
-                    / <span id="maxPages">1</span>
+                <div class="col-4 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Top 10 Pokemon</h4>
+                            <div id="top10Pokemon" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Top 10 Types</h4>
+                            <div id="top10Types" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Top 10 Abilities</h4>
+                            <div id="top10Ability" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Top 10 Lab Mon</h4>
+                            <div id="top10LabMons" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-2">
+                <div class="col-4 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Death Locations</h4>
+                            <div id="top10Locations" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Enemy Mons</h4>
+                            <div id="top10enemy" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Last Enemy Move</h4>
+                            <div id="top10LastMove" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">End Cause</h4>
+                            <div id="endCause" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-xl mt-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Progress</h4>
+                            <div id="progress" class="chart-container">
+                                <canvas class="chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane pt-2 fade" id="list-tab-pane" role="tabpanel" aria-labelledby="list-tab" tabindex="0">
+            <div class="aggregate-data card">
+                <div class="table-responsive">
+                    <table class="table mb-0 seed-detailed-table">
+                        <thead class="sticky-top">
+                        <tr>
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Playtime</th>
+                            <th>Pokemon</th>
+                            <th>Pivot</th>
+                            <th>LVL</th>
+                            <th>HP</th>
+                            <th>ATK</th>
+                            <th>DEF</th>
+                            <th>SPA</th>
+                            <th>SPD</th>
+                            <th>SPE</th>
+                            <th>Ability</th>
+                            <th><img title="Shedinjas encountered" alt="shed"
+                                     src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATBAMAAABiojCGAAAAElBMVEUAAABBQUHV1Wq9pFpiYlr29qxtbM5HAAAAAXRSTlMAQObYZgAAAH9JREFUCNc9zdENwyAMRdGHlAFwyAJ5ZAHHHqAJLFCp3X+VAiq5X0e2JQMQzALjw/MhkuJ/Ft4iTYyNNEpgjlhS5v5Z8xVxryd5JOeOwkZTM8WVSTF1iQht9S1qCmBjvQ+V2Gmne/Lx2JxiFT0RydUHF60sL4zqdk9iKRWY7sMfeFARcwYTa1kAAAAASUVORK5CYII=">
+                            </th>
+                            <th>End Location</th>
+                            <th>End Cause</th>
+                            <th>Enemy Pokemon</th>
+                            <th>Last Move</th>
+                        </tr>
+                        </thead>
+                        <tbody id="data-table-body"></tbody>
+                    </table>
+
+                </div>
+                <div class="page-controls p-2">
+                    <div class="text-end">
+                        <div class="d-inline-flex align-items-center gap-2">
+                            Page <input class="form-control d-inline-block" type="number" min="1" max="1" name="page" value="1" placeholder="Page">
+                            / <span id="maxPages">1</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -152,7 +215,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Settings</h5>
+                <h4 class="modal-title">Settings</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -190,33 +253,62 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Filter</h5>
+                <h4 class="modal-title">Filter</h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body" id="filter">
                 <form id="filterForm">
-                    <div class="mb-3">
-                        <h4>Pokemon:</h4>
-                        <select class="form-select" id="pokemon_select" name="pokemon[]" multiple data-ub-select-search
-                                data-ub-select-clear></select>
-                    </div>
-                    <div class="mb-3">
-                        <select id="bstFilter" name="bst" class="form-select">
-                            <option value="" selected>Select BST Range</option>
-                            <option value="under300">Under 300</option>
-                            <option value="300to449">300 - 449</option>
-                            <option value="450to599">450 - 599</option>
-                            <option value="over600">Over 600</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <h4>Last enemy move:</h4>
-                        <select class="form-select" id="enemy_move_select" name="lastEnemyMove[]" multiple
-                                data-ub-select-search data-ub-select-clear></select>
-                    </div>
+
                 </form>
                 <div class="text-end">
+                    <button type="button" class="btn btn-secondary" id="clearFilter">Clear</button>
                     <button type="button" class="btn btn-primary" id="applyFilter">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="detailsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Seed #<span class="seed-number"></span></h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-body d-flex flex-row gap-3">
+                    <div>
+                        <h5>Details</h5>
+                        <div class="d-flex flex-row gap-3">
+                            <div class="seed-image">
+                                <img class="recentImage" class="img-fluid"
+                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                     alt="Pokemon Image"/>
+                            </div>
+                            <div>
+                                <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
+                                    <span class="label">PokeMon:</span> <span class="recentName"></span>
+                                    <span class="label">Level:</span> <span class="recentLVL"></span>
+                                    <span class="label">BST:</span> <span class="recentBST"></span>
+                                    <span class="label">Run Ended:</span> <span class="recentRunEnded"></span>
+                                    <span class="label">End Cause:</span> <span class="recentRunEndCause"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-chart">
+                        <h5 class="text-center">Stats</h5>
+                        <div class="seed-info-stats" style="height: 150px; width: 250px;">
+                            <canvas class="statsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="seed-info-moves">
+                        <h5>Moves</h5>
+                        <div class='recentMove1'>Psychic</div>
+                        <div class='recentMove2'>Magical Leaf</div>
+                        <div class='recentMove3'>Thief</div>
+                        <div class='recentMove4'>Rock Throw</div>
+                    </div>
                 </div>
             </div>
         </div>

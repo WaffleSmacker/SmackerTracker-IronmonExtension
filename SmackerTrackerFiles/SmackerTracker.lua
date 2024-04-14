@@ -1,16 +1,28 @@
 
 local function IronMonData()
 	local self = {
-		version = "1.1",
-		name = "Smacker Tracker V1.1",
+		version = "1.2",
+		name = "Smacker Tracker",
 		author = "WaffleSmacker",
 		description = "Enables you to keep data from all your ironmon seeds and view them in a dashboard.  Auto Updates when your run ends.",
-		textfile = "SmackerTracker/ironmon-seed-data.csv",
 		github = "WaffleSmacker/SmackerTracker-IronmonExtension",
 	}
 
 	self.url = string.format("https://github.com/%s", self.github)
 
+	self.HEADERS = "UniqueId,Seed Number,PlayTime,Date,Pokemon Name,Pokemon ID,Type 1,Type 2,Nickname,Level,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,BST,Ability,Moves 1,Moves 2,Moves 3,Moves 4,Shedinja Encounters,End Run Location,Beat Brock,Beat Misty,Beat Surge,Beat Erika,Beat Koga,Beat Sabrina,Beat Blaine,Beat Giovanni,Beat Lorelai,Beat Bruno,Beat Agatha,Beat Lance,Beat Champ,Enemy Pokemon ID,Enemy Pokemon,Last Enemy Move,Lab Pokemon,Pivot Run,Run End Cause,Run End Trainer,Game Name,Game Settings"
+
+	self.FilesAndFolders = {
+		ExtensionFolder = "SmackerTracker",
+		DataCsv = "ironmon-seed-data.csv",
+		DataJs = "data.js",
+		Dashboard = "dashboard.html",
+	}
+	self.Paths = {
+		DataCsv = "",
+		DataJs = "",
+		Dashboard = "",
+	}
 
 	-- Executed when the user clicks the "Check for Updates" button while viewing the extension details within the Tracker's UI
 	function self.checkForUpdates()
@@ -22,9 +34,8 @@ local function IronMonData()
 		return isUpdateAvailable, downloadUrl
 	end
 
-	local DASHBOARD_URL = "extensions/SmackerTracker/dashboard.html"
 
-	function addStatsButtonToGameOverScreen()
+	local function addStatsButtonToGameOverScreen()
 		local STATS_ICON = { -- 12x11
 			{0,1,1,1,1,0,0,0,0,0,0,0},
 			{0,1,0,0,1,0,0,0,0,0,0,0},
@@ -45,7 +56,7 @@ local function IronMonData()
 			box = { Constants.SCREEN.WIDTH + Constants.SCREEN.MARGIN + 81, Constants.SCREEN.MARGIN + 3, 12, 12},
 			isVisible = function() return true end,
 			onClick = function(this)
-				Utils.openBrowserWindow(DASHBOARD_URL)
+				Utils.openBrowserWindow(self.Paths.Dashboard)
 			end,
 		}
 	
@@ -66,10 +77,7 @@ local function IronMonData()
 
 	-- If true then 1, false is 0.
 	local function boolToInteger(input)
-		if input then
-			return 1
-		else return 0
-		end
+		return input and 1 or 0
 	end
     
 	-- This section sets up the data which will be saved into the csv
@@ -85,7 +93,6 @@ local function IronMonData()
 		local currentDate = os.date("%Y-%m-%d")
 		local pokemonName = PokemonData.Pokemon[pokemon.pokemonID].name or "Unknown Pokemon"
 		local pokemonBST = PokemonData.Pokemon[pokemon.pokemonID].bst or 0
-		local hpPercentage = (pokemon.curHP or 0) / (pokemon.stats.hp or 100)
 		local abilityName = AbilityData.Abilities[PokemonData.getAbilityId(pokemon.pokemonID, pokemon.abilityNum)].name
 		local type_1 = getPokemonOrDefault(pokemon.PokemonId).types[1]
 		local type_2 = getPokemonOrDefault(pokemon.PokemonId).types[2]
@@ -122,7 +129,7 @@ local function IronMonData()
 		local enemyPokemonName
 		local lastEnemyMoveName
 		local runEndCause
-		local runEndTrainer = ""
+		local runEndTrainer
 		local lastEnemyMoveId = Memory.readword(GameSettings.gBattleResults + 0x24)
 		local beatKaizo = Program.hasDefeatedTrainer(438) or Program.hasDefeatedTrainer(439)  or Program.hasDefeatedTrainer(440) or Program.hasDefeatedTrainer(739) or Program.hasDefeatedTrainer(740) or Program.hasDefeatedTrainer(741)
 
@@ -143,16 +150,16 @@ local function IronMonData()
 			enemyPokemonName = 'None'
 			lastEnemyMoveName = 'None'
 		else
-			enemyPokemonName = 'Poision'
+			enemyPokemonName = 'Poison'
 			lastEnemyMoveName = 'Skissue'
 		end
 
 		local defeatedRivalOne = (Program.hasDefeatedTrainer(326) or Program.hasDefeatedTrainer(327) or Program.hasDefeatedTrainer(328))
 
-		if Battle.inActiveBattle() and not defeatedRivalOne then 
+		if Battle.inActiveBattle() and not defeatedRivalOne then
 			runEndCause = "Lab"
 			runEndTrainer = Battle.opposingTrainerId
-		elseif Battle.inActiveBattle() and not Battle.isWildEncounter then 
+		elseif Battle.inActiveBattle() and not Battle.isWildEncounter then
 			runEndCause = "Trainer Battle"
 			runEndTrainer = Battle.opposingTrainerId
 		elseif Battle.inActiveBattle() and not Battle.isWildEncounter and Battle.opposingTrainerId == brockId then
@@ -247,7 +254,7 @@ local function IronMonData()
 		table.insert(info, tostring(labPokemon))
 		table.insert(info, tostring(isPivotRun))
 		table.insert(info, tostring(runEndCause))
-		table.insert(info, tostring(runEndTrainer))
+		table.insert(info, tostring(runEndTrainer or ""))
 		table.insert(info, tostring(gameName))
 		table.insert(info, tostring(settingsFileName))
 		return info
@@ -282,13 +289,10 @@ local function IronMonData()
 	local function isPlayingE() return GameSettings.game == 2 end
 	local function isPlayingFRorE() return isPlayingFRLG() or isPlayingE() end
 
-	local function outputStatsToFile(pokemon, labMon, filename)
+	local function outputStatsToFile(pokemon, labMon, filepath)
 		if not PokemonData.isValid(pokemon.pokemonID) then
 			return false
 		end
-	
-		local customCodeFolder = FileManager.getCustomFolderPath()
-		local filepath = customCodeFolder .. filename
 
 		-- Check if the file exists
 		local fileExists = io.open(filepath, "r")
@@ -297,8 +301,7 @@ local function IronMonData()
 			fileExists = io.open(filepath, "w")
 			if fileExists then
 				-- Replace these header names with your desired column names
-				local headers = "UniqueId,Seed Number,PlayTime,Date,Pokemon Name,Pokemon ID,Type 1,Type 2,Nickname,Level,HP,Attack,Defense,Sp. Atk,Sp. Def,Speed,BST,Ability,Moves 1,Moves 2,Moves 3,Moves 4,Shedinja Encounters,End Run Location,Beat Brock,Beat Misty,Beat Surge,Beat Erika,Beat Koga,Beat Sabrina,Beat Blaine,Beat Giovanni,Beat Lorelai,Beat Bruno,Beat Agatha,Beat Lance,Beat Champ,Enemy Pokemon ID,Enemy Pokemon,Last Enemy Move,Lab Pokemon,Pivot Run,Run End Cause,Run End Trainer,Game Name,Game Settings\n"
-				fileExists:write(headers)
+				fileExists:write(self.HEADERS .. "\n")
 				fileExists:close()
 			end
 		else
@@ -318,10 +321,10 @@ local function IronMonData()
 		return true
 	end
 	
-	local function valueExistsInFirstColumn(filename, checkValue)
-		local file = io.open(filename, "r") -- Open the file in read mode
+	local function valueExistsInFirstColumn(filepath, checkValue)
+		local file = io.open(filepath, "r") -- Open the file in read mode
 		if not file then
-			return false, "Could not open file " .. filename
+			return false, "Could not open file " .. filepath
 		end
 	
 		for line in file:lines() do
@@ -336,74 +339,26 @@ local function IronMonData()
 		return false
 	end
 
-	-- Executed once every 30 frames, after most data from game memory is read in
-	function self.afterProgramDataUpdate()
-		-- Once per seed, when the player is able to move their character, initialize the seed variables
-		if not isPlayingFRLG() or not Program.isValidMapLocation() then
-			return
-		elseif not loadedVarsThisSeed then
-			self.resetSeedVars()
-			loadedVarsThisSeed = true
-		end
-			
-		local V = self.PerSeedVars
-		local leadPokemon = Tracker.getPokemon(1, true) or Tracker.getDefaultPokemon()
-		
-		if isPlayingFRorE() and leadPokemon.pokemonID ~= nil and leadPokemon.pokemonID ~= 0 and not V.FirstPokemon then
-			V.FirstPokemonId = leadPokemon.pokemonID
-			V.FirstPokemon = true
-			valueExistsInFirstColumn = valueExistsInFirstColumn("extensions/SmackerTracker/ironmon-seed-data.csv", tostring(GameSettings.game) .. "_" .. tostring(leadPokemon.personality))
-		end
-
-		-- Set up variable to use in the following checks.
-		hpPercentage = self.getHpPercent()
-		
-		-- Lead Pokemon Died
-		if hpPercentage ~= nil and hpPercentage == 0 and V.PokemonDead == false and not valueExistsInFirstColumn then
-			V.PokemonDead = true
-			outputStatsToFile(leadPokemon, V.FirstPokemonId, self.textfile)
-			local csvPath = "extensions/SmackerTracker/ironmon-seed-data.csv"
-			local jsonString = csvToJsonString(csvPath)
-			writeJsonData(jsonString)
-		end
-
-		if (Program.hasDefeatedTrainer(438) or Program.hasDefeatedTrainer(439)  or Program.hasDefeatedTrainer(440) or Program.hasDefeatedTrainer(739) or Program.hasDefeatedTrainer(740) or Program.hasDefeatedTrainer(741)) and not V.WonKaizo and not valueExistsInFirstColumn then
-			V.WonKaizo = true
-			outputStatsToFile(leadPokemon, V.FirstPokemonId, self.textfile)
-			local csvPath = "extensions/SmackerTracker/ironmon-seed-data.csv"
-			local jsonString = csvToJsonString(csvPath)
-			writeJsonData(jsonString)
-		end
-	end
-
-
 	------------------------------------ Dashboard Generation Section ------------------------------------
 
-	-- Function to split a string by a delimiter
-	function split(str, delimiter)
-		local result = {}
-		for match in (str..delimiter):gmatch("(.-)"..delimiter) do
-			table.insert(result, match)
-		end
-		return result
-	end
-
 	-- Function to convert CSV to a simple JSON string
-	function csvToJsonString(csvFile)
-		local file = io.open(csvFile, "r")
-		local headers = split(file:read(), ",")
+	local function csvToJsonString(csvFilePath)
+		local file = io.open(csvFilePath, "r")
+		if not file then return end
+		local lineHeaders = Utils.split(file:read(), ",")
 		local jsonLines = {}
 
 		for line in file:lines() do
-			local fields = split(line, ",")
+			local fields = Utils.split(line, ",")
 			local jsonLine = "{"
-			local value = "null";
-			for i, header in ipairs(headers) do
+			
+			for i, header in ipairs(lineHeaders) do
+				local value = "null";
 				if fields[i] ~= nil then
 					value = fields[i];
 				end
 				jsonLine = jsonLine .. '"' .. header .. '":"' .. value .. '"'
-				if i < #headers then
+				if i < #lineHeaders then
 					jsonLine = jsonLine .. ","
 				end
 			end
@@ -417,18 +372,59 @@ local function IronMonData()
 	-- You can now use jsonString as your JSON data in Lua
 
 	-- Main function to generate the HTML dashboard
-	function writeJsonData(jsonString)
+	local function writeJsonData(jsonString)
         local dataJsString = [=[var data = ]=] .. jsonString .. [=[;]=]
-		local jsFile = io.open("extensions/SmackerTracker/data.js", "w")
+			local jsFile = io.open(self.Paths.DataJs, "w")
+			if not jsFile then return end
         jsFile:write(dataJsString)
         jsFile:close()
-	
-		print("Dashboard HTML file generated at extensions/SmackerTracker/dashboard.html")
+	end
+
+
+	-- Executed once every 30 frames, after most data from game memory is read in
+	function self.afterProgramDataUpdate()
+		-- Once per seed, when the player is able to move their character, initialize the seed variables
+		if not isPlayingFRLG() or not Program.isValidMapLocation() then
+				return
+		elseif not loadedVarsThisSeed then
+				self.resetSeedVars()
+				loadedVarsThisSeed = true
+		end
+		local V = self.PerSeedVars
+		local leadPokemon = Tracker.getPokemon(1, true) or Tracker.getDefaultPokemon()
+		local alreadyExists = false
+		if isPlayingFRorE() and leadPokemon.pokemonID ~= nil and leadPokemon.pokemonID ~= 0 and not V.FirstPokemon then
+				V.FirstPokemonId = leadPokemon.pokemonID
+				V.FirstPokemon = true
+				local namePersonality = tostring(GameSettings.game) .. "_" .. tostring(leadPokemon.personality)
+				alreadyExists = valueExistsInFirstColumn(self.Paths.DataCsv, namePersonality)
+		end
+		-- Set up variable to use in the following checks.
+		local hpPercentage = self.getHpPercent()
+		-- Lead Pokemon Died
+		if hpPercentage ~= nil and hpPercentage == 0 and V.PokemonDead == false and not alreadyExists then
+				V.PokemonDead = true
+				outputStatsToFile(leadPokemon, V.FirstPokemonId, self.Paths.DataCsv)
+				local jsonString = csvToJsonString(self.Paths.DataCsv)
+				writeJsonData(jsonString)
+		end
+		if (Program.hasDefeatedTrainer(438) or Program.hasDefeatedTrainer(439) or Program.hasDefeatedTrainer(440) or Program.hasDefeatedTrainer(739) or Program.hasDefeatedTrainer(740) or Program.hasDefeatedTrainer(741)) and not V.WonKaizo and not alreadyExists then
+				V.WonKaizo = true
+				outputStatsToFile(leadPokemon, V.FirstPokemonId, self.Paths.DataCsv)
+				local jsonString = csvToJsonString(self.Paths.DataCsv)
+				writeJsonData(jsonString)
+		end
 	end
 
 	-- Executed only once: When the extension is enabled by the user, and/or when the Tracker first starts up, after it loads all other required files and code
 	function self.startup()
 		addStatsButtonToGameOverScreen()
+
+		-- Build out paths to files within the extension folder
+		local extFolderPath = FileManager.getCustomFolderPath() .. self.FilesAndFolders.ExtensionFolder .. FileManager.slash
+		self.Paths.DataCsv = extFolderPath .. self.FilesAndFolders.DataCsv
+		self.Paths.DataJs = extFolderPath .. self.FilesAndFolders.DataJs
+		self.Paths.Dashboard = extFolderPath .. self.FilesAndFolders.Dashboard
 	end
 
 	-- Executed only once: When the extension is disabled by the user, necessary to undo any customizations, if able
