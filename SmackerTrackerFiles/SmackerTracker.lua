@@ -1,7 +1,7 @@
 
 local function IronMonData()
 	local self = {
-		version = "1.2",
+		version = "1.3",
 		name = "Smacker Tracker",
 		author = "WaffleSmacker",
 		description = "Enables you to keep data from all your ironmon seeds and view them in a dashboard.  Auto Updates when your run ends.",
