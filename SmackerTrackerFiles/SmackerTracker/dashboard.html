@@ -172,26 +172,26 @@
                     <table class="table mb-0 seed-detailed-table">
                         <thead class="sticky-top">
                         <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Playtime</th>
-                            <th>Pokemon</th>
-                            <th>Pivot</th>
-                            <th>LVL</th>
-                            <th>HP</th>
-                            <th>ATK</th>
-                            <th>DEF</th>
-                            <th>SPA</th>
-                            <th>SPD</th>
-                            <th>SPE</th>
-                            <th>Ability</th>
-                            <th><img title="Shedinjas encountered" alt="shed"
+                            <th data-sort="Seed Number">#</th>
+                            <th data-sort="Date">Date</th>
+                            <th data-sort="PlayTime">Playtime</th>
+                            <th data-sort="Pokemon Name">Pokemon</th>
+                            <th data-sort="Pivot Run">Pivot</th>
+                            <th data-sort="Level">LVL</th>
+                            <th data-sort="HP">HP</th>
+                            <th data-sort="Attack">ATK</th>
+                            <th data-sort="Defense">DEF</th>
+                            <th data-sort="Sp. Atk">SPA</th>
+                            <th data-sort="Sp. Def">SPD</th>
+                            <th data-sort="Speed">SPE</th>
+                            <th data-sort="Ability">Ability</th>
+                            <th data-sort="Shedinja Encounters"><img title="Shedinjas encountered" alt="shed"
                                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATBAMAAABiojCGAAAAElBMVEUAAABBQUHV1Wq9pFpiYlr29qxtbM5HAAAAAXRSTlMAQObYZgAAAH9JREFUCNc9zdENwyAMRdGHlAFwyAJ5ZAHHHqAJLFCp3X+VAiq5X0e2JQMQzALjw/MhkuJ/Ft4iTYyNNEpgjlhS5v5Z8xVxryd5JOeOwkZTM8WVSTF1iQht9S1qCmBjvQ+V2Gmne/Lx2JxiFT0RydUHF60sL4zqdk9iKRWY7sMfeFARcwYTa1kAAAAASUVORK5CYII=">
                             </th>
-                            <th>End Location</th>
-                            <th>End Cause</th>
-                            <th>Enemy Pokemon</th>
-                            <th>Last Move</th>
+                            <th data-sort="End Run Location">End Location</th>
+                            <th data-sort="Run End Cause">End Cause</th>
+                            <th data-sort="Enemy Pokemon">Enemy Pokemon</th>
+                            <th data-sort="Last Enemy Move">Last Move</th>
                         </tr>
                         </thead>
                         <tbody id="data-table-body"></tbody>
@@ -276,38 +276,84 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="card-body d-flex flex-row gap-3">
-                    <div>
-                        <h5>Details</h5>
-                        <div class="d-flex flex-row gap-3">
-                            <div class="seed-image">
-                                <img class="recentImage" class="img-fluid"
-                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                     alt="Pokemon Image"/>
-                            </div>
-                            <div>
-                                <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
-                                    <span class="label">PokeMon:</span> <span class="recentName"></span>
-                                    <span class="label">Level:</span> <span class="recentLVL"></span>
-                                    <span class="label">BST:</span> <span class="recentBST"></span>
-                                    <span class="label">Run Ended:</span> <span class="recentRunEnded"></span>
-                                    <span class="label">End Cause:</span> <span class="recentRunEndCause"></span>
+                <div class="card-body">
+                    <div class="d-flex flex-row flex-wrap gap-3">
+                        <div>
+                            <h5>Details</h5>
+                            <div class="d-flex flex-row gap-3">
+                                <div class="seed-image">
+                                    <img class="recentImage" class="img-fluid"
+                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                         alt="Pokemon Image"/>
+                                </div>
+                                <div>
+                                    <div class="d-inline-grid column-gap-2" style="grid-template-columns: repeat(2, auto);">
+                                        <span class="label">PokeMon:</span> <span class="recentName"></span>
+                                        <span class="label">Level:</span> <span class="recentLVL"></span>
+                                        <span class="label">BST:</span> <span class="recentBST"></span>
+                                        <span class="label">Ability:</span> <span class="recentAbility"></span>
+                                        <span class="label">Run Ended:</span> <span class="recentRunEnded"></span>
+                                        <span class="label">End Cause:</span> <span class="recentRunEndCause"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="stats-chart">
-                        <h5 class="text-center">Stats</h5>
-                        <div class="seed-info-stats" style="height: 150px; width: 250px;">
-                            <canvas class="statsChart"></canvas>
+                        <div class="stats-chart">
+                            <h5 class="text-center">Stats</h5>
+                            <div class="seed-info-stats" style="height: 150px; width: 250px;">
+                                <canvas class="statsChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="seed-info-moves">
+                            <h5>Moves</h5>
+                            <div class='recentMove1'>Psychic</div>
+                            <div class='recentMove2'>Magical Leaf</div>
+                            <div class='recentMove3'>Thief</div>
+                            <div class='recentMove4'>Rock Throw</div>
                         </div>
                     </div>
-                    <div class="seed-info-moves">
-                        <h5>Moves</h5>
-                        <div class='recentMove1'>Psychic</div>
-                        <div class='recentMove2'>Magical Leaf</div>
-                        <div class='recentMove3'>Thief</div>
-                        <div class='recentMove4'>Rock Throw</div>
+                    <div class="mt-2 d-flex flex-row flex-wrap gap-2">
+                        <div class="badge beat-brock">
+                            <img alt="Beat Brock" title="Beat Brock" src="https://static.wikia.nocookie.net/pokemon/images/2/24/Boulderbadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-misty">
+                            <img alt="Beat Misty" title="Beat Misty" src="https://static.wikia.nocookie.net/pokemon/images/4/4d/Cascadebadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-surge">
+                            <img alt="Beat Surge" title="Beat Surge" src="https://static.wikia.nocookie.net/pokemon/images/a/a8/Thunderbadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-erika">
+                            <img alt="Beat Erika" title="Beat Erika" src="https://static.wikia.nocookie.net/pokemon/images/b/b5/Rainbow_Badge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-koga">
+                            <img alt="Beat Koga" title="Beat Koga" src="https://static.wikia.nocookie.net/pokemon/images/6/64/Soulbadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-sabrina">
+                            <img alt="Beat Sabrina" title="Beat Sabrina" src="https://static.wikia.nocookie.net/pokemon/images/1/1c/Marshbadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-blaine">
+                            <img alt="Beat Blain" title="Beat Blain" src="https://static.wikia.nocookie.net/pokemon/images/d/d9/Volcanobadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-giovanni">
+                            <img alt="Beat Giovanni" title="Beat Giovanni" src="https://static.wikia.nocookie.net/pokemon/images/c/cc/Earthbadge.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-lorelei">
+                            <img alt="Beat Lorelei" title="Beat Lorelei" src="https://static.wikia.nocookie.net/pokemon/images/6/63/Lorelei_FireRed_and_LeafGreen.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-bruno">
+                            <img alt="Beat Bruno" title="Beat Bruno" src="https://static.wikia.nocookie.net/pokemon/images/3/3d/Bruno_FireRed_and_LeafGreen.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-agatha">
+                            <img alt="Beat Agatha" title="Beat Agatha" src="https://static.wikia.nocookie.net/pokemon/images/d/de/Agatha_FireRed_and_LeafGreen.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-lance">
+                            <img alt="Beat Lance" title="Beat Lance" src="https://static.wikia.nocookie.net/pokemon/images/d/d8/Lance_FireRed_and_LeafGreen.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+                        <div class="badge beat-champ">
+                            <img alt="Beat Champ" title="Beat Champ" src="https://static.wikia.nocookie.net/pokemon/images/c/c7/Blue_FireRed_and_LeafGreen.png/revision/latest/scale-to-height-down/48" />
+                        </div>
+
+                        </div>
                     </div>
                 </div>
             </div>

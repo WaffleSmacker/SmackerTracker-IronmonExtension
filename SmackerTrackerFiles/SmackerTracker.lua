@@ -1,7 +1,7 @@
 
 local function IronMonData()
 	local self = {
-		version = "1.3",
+		version = "1.4",
 		name = "Smacker Tracker",
 		author = "WaffleSmacker",
 		description = "Enables you to keep data from all your ironmon seeds and view them in a dashboard.  Auto Updates when your run ends.",
@@ -219,7 +219,7 @@ local function IronMonData()
 		table.insert(info, tostring(pokemon.pokemonID))
 		table.insert(info, tostring(type_1))
 		table.insert(info, tostring(type_2))
-		table.insert(info, tostring(pokemon.nickname or ""))
+		table.insert(info, tostring(string.gsub((pokemon.nickname or ""), ",", "&#44;")))
 		table.insert(info, tostring(pokemon.level))
 		table.insert(info, tostring(pokemon.stats.hp or 0))
 		table.insert(info, tostring(pokemon.stats.atk or 0))
@@ -234,7 +234,7 @@ local function IronMonData()
 		table.insert(info, tostring(move_3))
 		table.insert(info, tostring(move_4))
 		table.insert(info, tostring(shedinja_encounters))
-		table.insert(info,tostring(end_run_location))
+		table.insert(info, tostring(end_run_location))
 		table.insert(info, tostring(beat_brock))
 		table.insert(info, tostring(beat_misty))
 		table.insert(info, tostring(beat_surge))
@@ -353,10 +353,13 @@ local function IronMonData()
 			local jsonLine = "{"
 			
 			for i, header in ipairs(lineHeaders) do
-				local value = "null";
+				local value = "";
 				if fields[i] ~= nil then
 					value = fields[i];
 				end
+                if header == "Nickname" then
+                    value = string.gsub(value, "&#44;", ",");
+                end
 				jsonLine = jsonLine .. '"' .. header .. '":"' .. value .. '"'
 				if i < #lineHeaders then
 					jsonLine = jsonLine .. ","
